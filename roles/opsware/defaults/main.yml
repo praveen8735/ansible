@@ -1,0 +1,5 @@
+---
+
+aix_service_path: /etc/rc.d/init.d/opsware-agent
+
+...
