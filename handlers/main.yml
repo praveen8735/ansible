@@ -6,9 +6,4 @@
 - name: software refresh
   command: chdir=/opt/opsware/agent/pylibs/cog/ ./bs_Software
 
-- name: opsware notify
-  local_action: hipchat token={{ hc_token }} room={{ hc_room }} msg="Role 'opsware' applied to {{ ansible_hostname }} at {{ ansible_date_time.iso8601 }}"
-  sudo: no
-  ignore_errors: yes
-  when: not quiet | bool
 
