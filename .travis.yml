@@ -1,12 +1,19 @@
---
+---
 language: python
 python: "2.7"
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+- sudo apt-get update -qq
+- sudo apt-get install -qq python-apt python-pycurl
 install:
-  - pip install ansible
+- pip install ansible
+- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 script:
-  - echo localhost > inventory
-  - ansible-playbook -i inventory --syntax-check role.yml
-  - ansible-playbook -i inventory --connection=local --sudo -vvvv role.yml
+- echo localhost > tests/inventory
+- ansible-playbook -i tests/inventory --syntax-check --list-tasks tasks/opsware/main.yml
+- ansible-playbook -i tests/inventory --connection=local --sudo -v tasks/opsware/main.yml
+- ansible-playbook -i tests/inventory --connection=local --sudo --check tasks/opsware/main.yml
+- >
+ansible-playbook -i tests/inventory --connection=local --sudo tasks/opsware/main.yml
+| grep -q 'changed=0.*failed=0'
+&& (echo 'Idempotence test: pass' && exit 0)
+|| (echo 'Idempotence test: fail' && exit 1)
