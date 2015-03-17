@@ -14,4 +14,5 @@ install:
   - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
 script:
-  # We'll add some commands to test the role here.
+# Check the role/playbook's syntax.
+  - ansible-playbook -i ansible/ ansible/tasks/main.yml --syntax-check
