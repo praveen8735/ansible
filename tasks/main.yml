@@ -1,0 +1,15 @@
+---
+
+- name: Ensure Opsware agent is running on Linux & Solaris
+  service: name=opsware-agent state=started enabled=yes
+  notify:
+  - hardware refresh
+  - software refresh
+  - opsware notify
+  
+- name: Ensure Opsware agent is running on AIX 
+  service: name={{ aix_service_path }} state=started enabled=yes
+  notify:
+  - hardware refresh
+  - software refresh
+  - opsware notify

@@ -1,0 +1,9 @@
+---
+
+- name: hardware refresh
+  command: chdir=/opt/opsware/agent/pylibs/cog/ ./bs_hardware
+
+- name: software refresh
+  command: chdir=/opt/opsware/agent/pylibs/cog/ ./bs_Software
+
+
