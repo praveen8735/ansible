@@ -17,4 +17,4 @@ install:
 script:
 # Check the role/playbook's syntax.
   #- "ansible-playbook -i tasks/inventory --syntax-check --list-tasks tasks/main.yml"
-  - ansible-playbook -i tests/inventory --syntax-check --list-tasks tests/role.yml
+  - ansible-playbook -i tests/inventory --syntax-check --list-tasks tests/main.yml
